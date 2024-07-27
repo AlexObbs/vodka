@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vodka Cocktails Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([39.8283, -98.5795], 4); // Centered in the USA
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var cocktails = [
+            {
+                name: "Moscow Mule",
+                description: "A refreshing cocktail made with vodka, ginger beer, and lime juice.",
+                coordinates: [40.7128, -74.0060]
+            },
+            {
+                name: "Cosmopolitan",
+                description: "A stylish cocktail with vodka, triple sec, cranberry juice, and lime juice.",
+                coordinates: [34.0522, -118.2437]
+            },
+            {
+                name: "Bloody Mary",
+                description: "A savory cocktail made with vodka, tomato juice, and various spices and flavorings.",
+                coordinates: [41.8781, -87.6298]
+            }
+        ];
+
+        cocktails.forEach(function (cocktail) {
+            var marker = L.marker(cocktail.coordinates).addTo(map);
+            marker.bindPopup("<b>" + cocktail.name + "</b><br>" + cocktail.description);
+        });
+    </script>
+</body>
+
+</html>
